@@ -1,4 +1,5 @@
 // pages/index.tsx
+"use client"
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Box, CameraControls, Center, GizmoViewport, OrbitControls, PerspectiveCamera, Text3D } from '@react-three/drei';

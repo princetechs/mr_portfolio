@@ -1,3 +1,4 @@
+"use client"
 
 import { CameraShake, Cloud, ContactShadows, Environment, Html, OrbitControls, Sky, SpotLight, TransformControls } from "@react-three/drei"
 import { Devsan } from '@/app/components/model/devsan'
