@@ -25,3 +25,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+/* .cs-message-input__content-editor
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+
+} */

@@ -16,7 +16,7 @@ export default function Exp(props) {
       {/* <Cloud position={[0, 0, -7]} args={[3,2]} /> */}
 
       {/* <axesHelper scale={2} position={[0, 0, 0]} onUpdate={(self) => self.setColors('#ff2080', '#20ff80', '#2080ff')} /> */}
-      <OrbitControls />
+      <OrbitControls autoRotate />
       {/* <ambientLight intensity={0.9} color="blue"/> */}
 
       {/* <Environment

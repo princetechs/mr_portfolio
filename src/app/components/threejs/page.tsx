@@ -1,5 +1,5 @@
 // pages/index.tsx
-"use client"
+
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Box, CameraControls, Center, GizmoViewport, OrbitControls, PerspectiveCamera, Text3D } from '@react-three/drei';
 import { useState, Suspense } from 'react';
@@ -9,7 +9,7 @@ export default function Home() {
 
     return (
         <>
-            <Canvas shadows  style={{ width: '30vw', height: '35vh' }}  >
+            <Canvas shadows  style={{ width: '45vw', height: '90vh' }}  >
                 {/* <color attach="background" args={['#fff']} /> */}
                 <Suspense fallback={null}>
                     <Exp />

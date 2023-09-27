@@ -1,4 +1,6 @@
+"use client"
 import Navbar from "./components/layout/navbar"
+import Openai from "./components/openai/page"
 import Threejs from "./components/threejs/page"
 export default function Home() {
   return (
@@ -10,7 +12,7 @@ export default function Home() {
         <div className="avtar   justify-start  ">
           <Threejs />
         </div>
-        
+        <Openai/>
       </div>
 
     </main>

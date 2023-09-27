@@ -17,7 +17,7 @@ export default function navbar() {
               <li>
                 <a
                   className="text-gray-500 transition hover:text-gray-500/75"
-                  href="/"
+                  href="https://github.com/princetechs/mr_portfolio"
                 >
                   Github
                 </a>

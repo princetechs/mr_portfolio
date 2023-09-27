@@ -22,7 +22,7 @@ export default function Logo() {
                     <Center >
                         <Text3D font={"/font/roboto.typeface.json"} smooth={0.1}
                         >
-                            <meshBasicMaterial attach="material" color="#6499E9" />
+                            <meshBasicMaterial attach="material" color="#8B5CF6" />
                             DevSan
                         </Text3D>
                     </Center>
