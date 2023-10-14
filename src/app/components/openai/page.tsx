@@ -8,11 +8,6 @@ interface MessageObject {
   sender: string;
 }
 
-const API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY
-const systemMessage = {
-  role: "system",
-  content: "You are speaking with Devsan, a seasoned software professional with 2 years of experience. Devsan's real name is Sandip Parida, and he is an Indian full-stack developer. Feel free to ask Devsan anything related to software development or inquire about his portfolio project."
-};
 
 
 export default function Openai() {
@@ -60,19 +55,19 @@ export default function Openai() {
     };
 
     const apiRequestBody = {
-      model: "gpt-3.5-turbo",
-      messages: [systemMessage, apiMessage],
+      messages: [apiMessage],
     };
 
     try {
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      const response = await fetch("/api/openai", {
         method: "POST",
         headers: {
-          Authorization: "Bearer " + API_KEY,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(apiRequestBody),
+
       });
+      console.log("test",apiRequestBody)
 
       const data = await response.json();
       const assistantMessage = data.choices[0].message.content;
@@ -112,7 +107,7 @@ export default function Openai() {
               ))}
               {isTyping && (
                 <div className="message">
-                  <p>Assistant is typing...</p>
+                  <p>Devsan is typing...</p>
                 </div>
               )}
             </div>

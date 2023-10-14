@@ -7,7 +7,7 @@ export default function Logo() {
 
     return (
         <>
-            <Canvas shadows camera={{ position: [0, 0, 3] }} style={{ width: '10vw', height: '8vh' }} >
+            <Canvas shadows camera={{ position: [0, 0, 3] }} style={{ width: '15vw', height: '12vh' }} >
                 {/* <color attach="background" args={['#fff']} /> */}
                 <Suspense fallback={null}>
                     <OrbitControls />
@@ -20,7 +20,7 @@ export default function Logo() {
                         yawFrequency={0.8}
                     />
                     <Center >
-                        <Text3D font={"/font/roboto.typeface.json"} smooth={0.1}
+                        <Text3D font={"/font/roboto.typeface.json"} 
                         >
                             <meshBasicMaterial attach="material" color="#8B5CF6" />
                             DevSan
