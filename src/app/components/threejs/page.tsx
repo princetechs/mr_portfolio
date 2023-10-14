@@ -13,9 +13,7 @@ export default function Home() {
         <>
             <Canvas shadows  style={{ width: '45vw', height: '90vh' }}  >
                 {/* <color attach="background" args={['#fff']} /> */}
-                <Suspense fallback={<Loading/>}>
                     <Exp />
-                </Suspense>
                
             </Canvas>
         </>
