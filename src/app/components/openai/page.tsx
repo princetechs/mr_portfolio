@@ -67,7 +67,6 @@ export default function Openai() {
         body: JSON.stringify(apiRequestBody),
 
       });
-      console.log("test",apiRequestBody)
 
       const data = await response.json();
       const assistantMessage = data.choices[0].message.content;
@@ -81,7 +80,6 @@ export default function Openai() {
       addMessage(newMessage);
       setIsTyping(false);
     } catch (error) {
-      console.error("Error processing message:", error);
     }
   }
 

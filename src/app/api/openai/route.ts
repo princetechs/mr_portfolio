@@ -12,7 +12,6 @@ interface Message {
 export async function POST(req: NextRequest) {
   const bodyText = await req.text();
   const requestBody: { messages: Message[] } = JSON.parse(bodyText);
-  console.log("Request Message:", requestBody);
  
   const messages: Message[] = [
     {
@@ -32,8 +31,6 @@ export async function POST(req: NextRequest) {
     max_tokens: 50, // Adjust the maximum number of tokens as needed
   });
 
-  console.log("Request Message:", requestBody.messages[0].content);
-  console.log("OpenAI Response:", response);
 
   // Respond to the client with the OpenAI API response
   return Response.json(response);
