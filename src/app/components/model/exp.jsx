@@ -18,7 +18,7 @@ export default function Exp(props) {
 
       {/* <axesHelper scale={2} position={[0, 0, 0]} onUpdate={(self) => self.setColors('#ff2080', '#20ff80', '#2080ff')} /> */}
       <OrbitControls enableZoom={false} />
-      <ambientLight intensity={0.9} color="blue" />
+      <ambientLight intensity={0.2} color="blue" />
 
       {/* <Environment
         background

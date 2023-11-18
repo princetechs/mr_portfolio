@@ -8,12 +8,15 @@ export default function Home() {
       <div className="navbar">
         <Navbar />
       </div>
-      <div className="content flex flex-row p-2   ">
-        <div className="avtar   justify-start  ">
+      <div className="content flex flex-col lg:flex-row p-2 lg:p-4">
+        <div className="avtar lg:w-1/2 lg:pr-2">
           <Threejs />
         </div>
-        <Openai/>
+        <div className="w-full lg:w-1/2">
+          <Openai />
+        </div>
       </div>
+
 
     </main>
   )

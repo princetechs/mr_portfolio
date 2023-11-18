@@ -1,5 +1,7 @@
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import * as THREE from "three"; // Importing THREE library
+
 import { useControls } from "leva";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
@@ -17,7 +19,7 @@ const corresponding = {
 
 
 export function Devsan(props) {
- 
+
   const {
     playAudio,
     script,
@@ -150,7 +152,15 @@ export function Devsan(props) {
 
   const { nodes, materials } = useGLTF(
     "/model/devsan.glb"
-  ) ; 
+  );
+  // custom colour added
+
+  // materials.Wolf3D_Outfit_Top.color.set(0xa855f7)
+  const newLogoTexture = new THREE.TextureLoader().load('/logo.png');
+  materials.Wolf3D_Outfit_Top.map = newLogoTexture;
+
+  console.log(materials.Wolf3D_Outfit_Top.map)
+
   const { animations: idleAnimation } = useFBX("/animations/Idle.fbx");
   const { animations: angryAnimation } = useFBX(
     "/animations/Angry Gesture.fbx"
@@ -172,14 +182,14 @@ export function Devsan(props) {
   );
 
   useEffect(() => {
-    actions [animation].reset().fadeIn(0.5).play();
+    actions[animation].reset().fadeIn(0.5).play();
     return () => actions[animation].fadeOut(0.5);
   }, [animation]);
 
   // CODE ADDED AFTER THE TUTORIAL (but learnt in the portfolio tutorial ♥️)
   useFrame((state) => {
     if (headFollow && group_anim.current) {
-      const head = (group_anim.current ).getObjectByName("Head");
+      const head = (group_anim.current).getObjectByName("Head");
       if (head) {
         head.lookAt(state.camera.position);
       }
@@ -187,7 +197,7 @@ export function Devsan(props) {
   });
 
 
-  
+
   return (
     <group  {...props} dispose={null} ref={group_anim} >
       <primitive object={nodes.Hips} />
@@ -246,6 +256,7 @@ export function Devsan(props) {
         geometry={nodes.Wolf3D_Outfit_Top.geometry}
         material={materials.Wolf3D_Outfit_Top}
         skeleton={nodes.Wolf3D_Outfit_Top.skeleton}
+
       />
       <skinnedMesh
         name="Wolf3D_Hair"
