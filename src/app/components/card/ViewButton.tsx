@@ -4,14 +4,15 @@ interface ViewButtonProps {
     offset: string | number;
     className?: string;
     text: string;
+    href?: string;
 }
 
-const ViewButton: FC<ViewButtonProps> = ({ offset, className = '', text }) => {
+const ViewButton: FC<ViewButtonProps> = ({ offset, className = '', text, href }) => {
     return (
         <a target="_blank"
             data-atropos-offset={offset}
             className={`group  inline-flex items-center overflow-hidden rounded bg-indigo-600 px-8 py-3 text-white focus:outline-none focus:ring active:bg-indigo-500  ${className}`}
-            href="/download"
+            href={href}
         >
             <span className="absolute -start-full transition-all group-hover:start-4">
                 <svg

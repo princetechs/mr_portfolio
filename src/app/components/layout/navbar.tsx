@@ -34,37 +34,33 @@ const MobileMenuButton = () => (
 
 export default function Navbar() {
   return (
-    <header className="sticky start-px z-10 bg-white backdrop-filter backdrop-blur-lg bg-opacity-25 border-black-500 border rounded-lg">
+    <header className="sticky top-0 z-10 bg-white backdrop-filter backdrop-blur-lg bg-opacity-25 border-black-500 border rounded-lg">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex-1 md:flex md:items-center md:gap-12">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center gap-2 md:gap-12">
             <span className="sr-only">Home</span>
             <Logo />
+            <nav aria-label="Global" className="hidden md:flex items-center gap-6 text-sm">
+              <NavLink href="https://github.com/princetechs/mr_portfolio" text="Github" />
+              <NavLink href="/Resume_nov_2023.pdf" text="Resume" />
+              <NavLink href="/projects" text="Projects" />
+            </nav>
           </div>
 
-          <div className="md:flex md:items-center md:gap-12">
-            <nav aria-label="Global" className="hidden md:block">
-              <ul className="flex items-center gap-6 text-sm">
-                <NavLink
-                  href="https://github.com/princetechs/mr_portfolio"
-                  text="Github"
-                />
-                <NavLink
-                  href="/Resume_nov_2023.pdf"
-                  text="Resume"
-                />
-                <NavLink
-                  href="/"
-                  text="Projects"
-                />
-              </ul>
-            </nav>
-            <div className="flex items-center gap-4">
-              <MobileMenuButton />
-            </div>
+          <div className="md:hidden flex items-center gap-4">
+            <MobileMenuButton />
           </div>
+        </div>
+        {/* Mobile menu */}
+        <div className="md:hidden">
+          <nav className="flex flex-col items-center gap-4 text-sm">
+            <NavLink href="https://github.com/princetechs/mr_portfolio" text="Github" />
+            <NavLink href="/Resume_nov_2023.pdf" text="Resume" />
+            <NavLink href="/projects" text="Projects" />
+          </nav>
         </div>
       </div>
     </header>
+
   );
 }

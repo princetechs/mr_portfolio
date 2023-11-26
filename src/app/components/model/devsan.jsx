@@ -1,7 +1,7 @@
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three"; // Importing THREE library
-
+// import.meta.env.MODE === "production"
 import { useControls } from "leva";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
