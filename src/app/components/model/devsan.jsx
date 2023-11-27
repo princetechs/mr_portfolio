@@ -1,142 +1,27 @@
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three"; // Importing THREE library
-// import.meta.env.MODE === "production"
-import { useControls } from "leva";
+import useAppState from "../../store";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-const corresponding = {
-  A: "viseme_PP",
-  B: "viseme_kk",
-  C: "viseme_I",
-  D: "viseme_AA",
-  E: "viseme_O",
-  F: "viseme_U",
-  G: "viseme_FF",
-  H: "viseme_TH",
-  X: "viseme_PP",
-};
-
-
 export function Devsan(props) {
-
   const {
     playAudio,
-    script,
     headFollow,
+    script,
     smoothMorphTarget,
     morphTargetSmoothing,
-  } = useControls({
-    playAudio: false,
-    headFollow: true,
-    smoothMorphTarget: true,
-    morphTargetSmoothing: 0.5,
-    script: {
-      value: "welcome",
-      options: ["welcome", "pizzas"],
-    },
-  });
+    current_animation,
+    setPlayAudio,
+    setHeadFollow,
+    setSmoothMorphTarget,
+    setMorphTargetSmoothing,
+    setCurrentAnimation,
+  } = useAppState();
 
-  const audio = useMemo(() => new Audio(`/audios/${script}.mp3`), [script]);
-  // const jsonFile = useLoader(THREE.FileLoader, `audios/${script}.json`);
-  // const lipsync = JSON.parse(jsonFile);
-
-  // useFrame(() => {
-  //   const currentAudioTime = audio.currentTime;
-  //   if (audio.paused || audio.ended) {
-  //     setAnimation("Idle");
-  //     return;
-  //   }
-
-  //   Object.values(corresponding).forEach((value) => {
-  //     if (!smoothMorphTarget) {
-  //       nodes.Wolf3D_Head.morphTargetInfluences[
-  //         nodes.Wolf3D_Head.morphTargetDictionary[value]
-  //       ] = 0;
-  //       nodes.Wolf3D_Teeth.morphTargetInfluences[
-  //         nodes.Wolf3D_Teeth.morphTargetDictionary[value]
-  //       ] = 0;
-  //     } else {
-  //       nodes.Wolf3D_Head.morphTargetInfluences[
-  //         nodes.Wolf3D_Head.morphTargetDictionary[value]
-  //       ] = THREE.MathUtils.lerp(
-  //         nodes.Wolf3D_Head.morphTargetInfluences[
-  //           nodes.Wolf3D_Head.morphTargetDictionary[value]
-  //         ],
-  //         0,
-  //         morphTargetSmoothing
-  //       );
-
-  //       nodes.Wolf3D_Teeth.morphTargetInfluences[
-  //         nodes.Wolf3D_Teeth.morphTargetDictionary[value]
-  //       ] = THREE.MathUtils.lerp(
-  //         nodes.Wolf3D_Teeth.morphTargetInfluences[
-  //           nodes.Wolf3D_Teeth.morphTargetDictionary[value]
-  //         ],
-  //         0,
-  //         morphTargetSmoothing
-  //       );
-  //     }
-  //   });
-
-  //   for (let i = 0; i < lipsync.mouthCues.length; i++) {
-  //     const mouthCue = lipsync.mouthCues[i];
-  //     if (
-  //       currentAudioTime >= mouthCue.start &&
-  //       currentAudioTime <= mouthCue.end
-  //     ) {
-  //       if (!smoothMorphTarget) {
-  //         nodes.Wolf3D_Head.morphTargetInfluences[
-  //           nodes.Wolf3D_Head.morphTargetDictionary[
-  //             corresponding[mouthCue.value]
-  //           ]
-  //         ] = 1;
-  //         nodes.Wolf3D_Teeth.morphTargetInfluences[
-  //           nodes.Wolf3D_Teeth.morphTargetDictionary[
-  //             corresponding[mouthCue.value]
-  //           ]
-  //         ] = 1;
-  //       } else {
-  //         nodes.Wolf3D_Head.morphTargetInfluences[
-  //           nodes.Wolf3D_Head.morphTargetDictionary[
-  //             corresponding[mouthCue.value]
-  //           ]
-  //         ] = THREE.MathUtils.lerp(
-  //           nodes.Wolf3D_Head.morphTargetInfluences[
-  //             nodes.Wolf3D_Head.morphTargetDictionary[
-  //               corresponding[mouthCue.value]
-  //             ]
-  //           ],
-  //           1,
-  //           morphTargetSmoothing
-  //         );
-  //         nodes.Wolf3D_Teeth.morphTargetInfluences[
-  //           nodes.Wolf3D_Teeth.morphTargetDictionary[
-  //             corresponding[mouthCue.value]
-  //           ]
-  //         ] = THREE.MathUtils.lerp(
-  //           nodes.Wolf3D_Teeth.morphTargetInfluences[
-  //             nodes.Wolf3D_Teeth.morphTargetDictionary[
-  //               corresponding[mouthCue.value]
-  //             ]
-  //           ],
-  //           1,
-  //           morphTargetSmoothing
-  //         );
-  //       }
-
-  //       break;
-  //     }
-  //   }
-  // });
-
+  const audio = useMemo(() => new Audio(`/audios/welcome.mp3`), [script]);
   useEffect(() => {
-    // nodes.Wolf3D_Head.morphTargetInfluences[
-    //   nodes.Wolf3D_Head.morphTargetDictionary["viseme_I"]
-    // ] = 1;
-    // nodes.Wolf3D_Teeth.morphTargetInfluences[
-    //   nodes.Wolf3D_Teeth.morphTargetDictionary["viseme_I"]
-    // ] = 1;
+
     if (playAudio) {
       audio.play();
       if (script === "welcome") {
@@ -159,7 +44,7 @@ export function Devsan(props) {
   const newLogoTexture = new THREE.TextureLoader().load('/logo.png');
   materials.Wolf3D_Outfit_Top.map = newLogoTexture;
 
-  console.log(materials.Wolf3D_Outfit_Top.map)
+  // console.log(materials.Wolf3D_Outfit_Top.map)
 
   const { animations: idleAnimation } = useFBX("/animations/Idle.fbx");
   const { animations: angryAnimation } = useFBX(
@@ -188,18 +73,26 @@ export function Devsan(props) {
 
   // CODE ADDED AFTER THE TUTORIAL (but learnt in the portfolio tutorial ♥️)
   useFrame((state) => {
-    if (headFollow && group_anim.current) {
+    if (true && group_anim.current) {
       const head = (group_anim.current).getObjectByName("Head");
       if (head) {
         head.lookAt(state.camera.position);
       }
     }
   });
-
-
+  const handleHover = (e) => {
+    setPlayAudio(!playAudio)
+  }
+  const handlehead = (e) => {
+    setSmoothMorphTarget(!smoothMorphTarget)
+    setHeadFollow(!headFollow)
+  }
+  const handleSmoothMorphTarget = (e) => {
+    setSmoothMorphTarget(!smoothMorphTarget)
+  }
 
   return (
-    <group  {...props} dispose={null} ref={group_anim} >
+    <group  {...props} dispose={null} ref={group_anim} onClick={handleHover} >
       <primitive object={nodes.Hips} />
       <skinnedMesh
         name="EyeLeft"
@@ -217,7 +110,7 @@ export function Devsan(props) {
         morphTargetDictionary={nodes.EyeRight.morphTargetDictionary}
         morphTargetInfluences={nodes.EyeRight.morphTargetInfluences}
       />
-      <skinnedMesh
+      <skinnedMesh onPointerMove={handlehead}
         name="Wolf3D_Head"
         geometry={nodes.Wolf3D_Head.geometry}
         material={materials.Wolf3D_Skin}

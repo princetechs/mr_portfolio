@@ -1,18 +1,16 @@
 import React from 'react';
 import Logo from '../model/logo';
 
-const linkStyles = 'text-gray-500 transition hover:text-gray-500/75';
+const linkStyles = 'text-gray-500 transition hover:text-gray-500/75 ';
 const buttonStyles = 'rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75';
 interface NavLinkProps {
   href: string;
   text: string;
 }
 const NavLink: React.FC<NavLinkProps> = ({ href, text }) => (
-  <li>
-    <a className={linkStyles} href={href}>
-      {text}
-    </a>
-  </li>
+  <a className={linkStyles} href={href}>
+    {text}
+  </a>
 );
 
 const MobileMenuButton = () => (
