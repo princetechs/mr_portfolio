@@ -8,8 +8,6 @@ interface MessageObject {
   sender: string;
 }
 
-
-
 export default function Openai() {
   const sendButtonRef = useRef<HTMLButtonElement>(null); // Add a ref for the send button
 

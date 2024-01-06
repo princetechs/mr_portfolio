@@ -13,15 +13,20 @@ export default function Exp(props) {
   camera.position.set(0.3, 0.4, 1.6); // Adjust these values as needed
 
   useEffect(() => {
-    const driverObj = driver({
-      showProgress: true,
-      steps: [
-        { element: 'saj', popover: { title: 'Intro', description: 'Click On Shirt For Intro', side: "right", align: 'start' } },
-        { element: '#dev_chat', popover: { title: 'Ask Me AnyThing', description: 'You can type any questions about my experience.', side: "bottom", align: 'start' } },
-        { popover: { title: 'Enjoy', description: 'Please Give A Star On Github.' } }
-      ]
-    });
-    driverObj.drive();
+    const hasSeenWalkthrough = localStorage.getItem('hasSeenWalkthrough');
+    if (!hasSeenWalkthrough) {
+      const driverObj = driver({
+        showProgress: true,
+        steps: [
+          { element: 'saj', popover: { title: 'Intro', description: 'Click On Shirt For Intro', side: "right", align: 'start' } },
+          { element: '#dev_chat', popover: { title: 'Ask Me AnyThing', description: 'You can type any questions about my experience.', side: "bottom", align: 'start' } },
+          { popover: { title: 'Enjoy', description: 'Please Give A Star On Github.' } }
+        ]
+      });
+      driverObj.drive();
+      localStorage.setItem('hasSeenWalkthrough', 'true');
+
+    }
 
 
   }, []);
