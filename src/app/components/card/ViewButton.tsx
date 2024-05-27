@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-
+// Insert the return component calling `getContent()` below
 interface ViewButtonProps {
     offset: string | number;
     className?: string;
